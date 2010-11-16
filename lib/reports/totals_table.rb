@@ -6,10 +6,14 @@ class TotalsTable < Report
     
     data={}
     metrics.each {|m| data[m]=[]} # Create hash keys
-              
-    @@sites.values.each do |site|  	
+    
+	sites = @@sites.values
+	
+	sites.sort! {|a,b| a.name <=> b.name }
+	
+	sites.each do |site| 	
       if site.is_for_total?
-      
+		
         data[:name] << site.name
         data[:visitors] << site.visitors
         data[:visits] << site.visits

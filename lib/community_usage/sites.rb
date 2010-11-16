@@ -58,6 +58,7 @@ module Sites
     ["14920893",    "ESOL Online",                      true,              true,               {:total => nil, :nz => '2145762637'}           ],
     ["7901135",     "Gifted and Talented",              true,              nil,                {:total => '1989001483', :nz => '276663746'}   ],
     ["7901135",     "Health and PE",                    true,              nil,                {:total => '1192211562', :nz => '168815002'}   ],
+    ["36229745",    "Health Promoting Schools",         true,              true,               {:total => nil, :nz => '2145762637'}   		  ],
     ["14962720",    "He Kohinga Rauemi a Ipu Rangi",    true,              true,               {:total => nil, :nz => '2145762637'}           ],
     ["22192627",    "Hoatu Homai",                      true,              true,               {:total => nil, :nz => '2145762637'}           ],
     ["22900702",    "Home-School Partnerships",         true,              true,               {:total => nil, :nz => '2145762637'}           ],
@@ -79,7 +80,7 @@ module Sites
     ["7901144",     "Media Studies",                    true,              true,               {:total => nil, :nz => '2145762637'}           ],
     ["9226697",     "NZ Curriculum",                    true,              true,               {:total => nil, :nz => '2145762637'}           ],
     ["7901135",     "NCEA",                             true,              nil,                {:total => '1190271723', :nz => '453641217'}   ],
-    ["7901135",     "Ngā Toi Online",                   true,              nil,                {:total => '1272072292', :nz => '651106653'}   ],
+    ["7901135",     "Nga Toi Online",                   true,              nil,                {:total => '1272072292', :nz => '651106653'}   ],
     ["36101231",    "Pasifika",                         true,              true,               {:total => nil, :nz => '2145762637'}           ],
     ["8272137",     "Promoting Healthy Lifestyles",     true,              true,               {:total => nil, :nz => '2145762637'}           ],
     ["23725351",    "Putaiao",                          true,              true,               {:total => nil, :nz => '2145762637'}           ],
@@ -95,7 +96,7 @@ module Sites
     ["23522664",    "Taihape Area School",              nil,               true,               {:total => nil, :nz => '2145762637'}           ],
     ["16617864",    "Te Reo Maori",                     true,              true,               {:total => nil, :nz => '2145762637'}           ],
     ["19752543",    "Te tere Auraki",                   true,              true,               {:total => nil, :nz => '2145762637'}           ],
-    ["16845949",    "Tū Rangatira",                     true,              nil,                {:total => '1961915044', :nz => '227756734'}   ]
+    ["16845949",    "Tu Rangatira",                     true,              nil,                {:total => '1961915044', :nz => '227756734'}   ]
 
 
     ]

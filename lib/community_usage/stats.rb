@@ -158,7 +158,9 @@ module Stats
       # @average_time = MathHelper.make_minutes(time) #the spreadsheet hates these actual times
       @average_time = time
       @average_time
-    end
+    else
+	  @average_time
+	end
   end
   
   def pages_per_visit
