@@ -1,7 +1,7 @@
 $:.unshift File.expand_path(File.dirname(__FILE__))
 
 require 'rubygems'
-require 'garb'            # gem install garb -v 0.7.6
+require 'garb'            # gem install garb -v 0.8.0
 require 'active_support'  # gem install rails
 
 require 'community_usage/math'
@@ -15,3 +15,4 @@ require 'reports/report'
 require 'reports/communities_table'
 require 'reports/total_graphs'
 require 'reports/totals_table'
+
