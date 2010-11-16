@@ -1,8 +1,8 @@
-$:.unshift File.expand_path(File.dirname(__FILE__))
-
 require 'rubygems'
 require 'garb'            # gem install garb -v 0.8.0
-require 'active_support'  # gem install rails
+require 'active_support'  # gem install rails - also required by garb, may not be necessary
+
+$:.unshift File.expand_path(File.dirname(__FILE__))
 
 require 'community_usage/math'
 require 'community_usage/interface'
