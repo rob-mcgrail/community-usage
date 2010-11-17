@@ -5,7 +5,7 @@
 #
 # Populates a hash class variable of the report.rb class - @@sites
 #
-# Is called on report initialization, but since it is a class variable it is available 
+# Is called on report initialization, but since it is a class variable it is available
 # to all instances of report + children.
 #
 # There is a check so get_sites is only called once / isn't messed with by children of Report
@@ -27,13 +27,13 @@
 #
 
 module Sites
-  
+
   #
   #  Community => true if it's from http://www.tki.org.nz/Communities   otherwise nil
   #
   #  Total => true if it should be included in the totals for the report  otherwise nil
   #
-  
+
   def get_sites
     list = [
 
@@ -62,7 +62,7 @@ module Sites
     ["14962720",    "He Kohinga Rauemi a Ipu Rangi",    true,              true,               {:total => nil, :nz => '2145762637'}           ],
     ["22192627",    "Hoatu Homai",                      true,              true,               {:total => nil, :nz => '2145762637'}           ],
     ["22900702",    "Home-School Partnerships",         true,              true,               {:total => nil, :nz => '2145762637'}           ],
-    ["7901135",     "INNZ",                             true,              nil,                {:total => '1192211562', :nz => '168815002'}   ],  
+    ["7901135",     "INNZ",                             true,              nil,                {:total => '1192211562', :nz => '168815002'}   ],
     ["7901135",     "ICT Community",                    true,              nil,                {:total => '1205725128', :nz => '1174462207'}  ],
     ["24329144",    "ICT Helpdesk",                     true,              true,               {:total => nil, :nz => '2145762637'}           ],
     ["19644726",    "Key Competencies",                 true,              true,               {:total => nil, :nz => '2145762637'}           ],
@@ -103,7 +103,7 @@ module Sites
 
     if !self.sites?
       sites = Hash.new
-		
+
       list.each do |site|
       	str = site[1].downcase.tr(" ", "_").tr("/", "_")
       	sites[str.to_sym]= Site.new(site[1], site[0], site[2], site[3], site[4])
@@ -111,5 +111,6 @@ module Sites
     end
     sites
   end
-  
+
 end
+
