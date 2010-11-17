@@ -4,12 +4,9 @@ class TotalGraphs < Report
   #
 
   [:pageviews, :visitors].each do |method_name|
-    send :define_method, method_name do |arg|
-      if arg.kind_of? Integer
-        months = arg
-      else
-        months = 12
-      end
+    send :define_method, method_name do |*args|
+
+      months = args[0] || 12
 
       metrics = [method_name, :month]
 
