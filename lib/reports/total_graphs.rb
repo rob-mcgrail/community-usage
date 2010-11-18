@@ -23,7 +23,11 @@ class TotalGraphs < Report
       # Get values using regular months
       v = 0
 
-      @@sites.values.each {|site| v += site.send(method_name)}
+      @@sites.values.each do |site|
+        if site.is_for_total?
+          v += site.send(method_name)
+        end
+      end
 
       data[method_name] << v
       data[:month] << $start_date.strftime("%h")
@@ -43,7 +47,12 @@ class TotalGraphs < Report
 
         v = 0
         # The flush method resets the instance variable back to nil, so the stats method will run again
-        @@sites.values.each {|site| site.flush(method_name.to_s); v += site.send(method_name)}
+        @@sites.values.each do |site|
+          if site.is_for_total?
+            site.flush(method_name.to_s)
+            v += site.send(method_name)
+          end
+        end
 
         data[method_name] << v
         data[:month] << $start_date.strftime("%h")
