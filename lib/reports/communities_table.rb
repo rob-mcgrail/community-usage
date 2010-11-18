@@ -1,15 +1,15 @@
 class CommunitiesTable < Report
-    
+
   def full
-        
+
     metrics = [:name, :visits, :visitors, :pageviews, :new_visitors, :returning_visitors, :bouncerate, :average_time, :pages_per_visit]
-    
+
     data={}
     metrics.each {|m| data[m]=[]} # Create hash keys
-              
-    @@sites.values.each do |site|  	
+
+    @@sites.values.each do |site|
       if site.community_page?
-      
+
         data[:name] << site.name
         data[:visitors] << site.visitors
         data[:visits] << site.visits
@@ -21,9 +21,10 @@ class CommunitiesTable < Report
         data[:pages_per_visit] << site.pages_per_visit
       end
     end
-    
+
     self.check(data)
     data
   end
-  
+
 end
+
