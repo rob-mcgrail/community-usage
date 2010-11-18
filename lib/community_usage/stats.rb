@@ -54,8 +54,8 @@ module Stats
 
           report.metrics arg.to_sym # API query
 
-        rescue Timeout::Error
-          puts "#{@name} timed out for #{arg}. Trying again."
+        rescue Timeout::Error, Garb::DataRequest::ClientError
+          puts "#{@name} suffered a request error for #{arg}. Trying again."
           retry
         end
 
@@ -111,8 +111,8 @@ module Stats
         report.metrics :visits
         report.dimensions :visitorType
 
-      rescue Timeout::Error
-        puts "#{@name} timed out for #{arg}. Trying again."
+      rescue Timeout::Error, Garb::DataRequest::ClientError
+        puts "#{@name} suffered a request error for #{arg}. Trying again."
         retry
       end
 
