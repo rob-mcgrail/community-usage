@@ -34,7 +34,7 @@ Site keys are their names:
 
 sites have tests for their place in TKI (see site.rb), so you can go:
 @@sites.each do |k, site|
-  next unless site.legacy?
+  next unless site.total?
   @legacy_visits += site.visits
 end
 

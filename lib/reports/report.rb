@@ -17,9 +17,9 @@ class Report
     # @@sites[:portal].profile
     # @@sites[:promoting_healthy_lifestyles].visitors
     #
-    # sites have tests for their place in TKI (see site.rb), so you can go:
+    # sites have tests for their place in the community (see sites.rb), so you can go:
     #  @@sites.each do |k, site|
-    #    next unless site.legacy?
+    #    next unless site.total?
     #    @legacy_visits += site.visits
     #  end
     #
