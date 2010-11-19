@@ -1,0 +1,78 @@
+A script for gathering stats for a large collection of sites.
+
+Requires garb 0.8.0:
+
+sudo gem install garb -v 0.8.0
+
+Scripts should always start with:
+
+require File.dirname(__FILE__) + '/../lib/community_usage'
+Interface.start
+Export.make_directory
+
+The interface class contains methods for getting dates ($start_date, $end_date), and for starting up the analytics session.
+Export.make_directory creates the output directory if it doesn't exist.
+
+The Export class is used for the rest of the report, to wrap calls to specific reports, with a particular output format:
+
+Export.to_csv(report, output filename)
+
+Each call to Export.to_csv spits out its own file.
+
+You pass Export.to_csv specific reports. These live in /reports and all inherit from /reports/report.rb
+
+Report also creates the @@sites object. This single object is accessible by all reports. It contains a hash
+of all the individual sites, and can be used to access their variables in report methods:
+
+Iterate through the sites, from within a report, like:
+
+@@sites.each {|key, site_object| puts site_object.name}
+
+Site keys are their names:
+@@sites[:portal].profile
+@@sites[:promoting_healthy_lifestyles].visitors
+
+sites have tests for their place in TKI (see site.rb), so you can go:
+@@sites.each do |k, site|
+  next unless site.legacy?
+  @legacy_visits += site.visits
+end
+
+The Report classes also have the following helpers:
+
+Report.new_zealandify
+Report.de_new_zealandify
+
+This sets and unsets a "use new zealand" variable for all the sites. 
+While this is set sites will grab stats with their new zealand only segments (entered in sites.rb)
+
+Report.set_to_previous_month
+Report.back_to_report_month
+
+Change the global date variables, and resets them
+
+The @@sites object is populated via the array in /lib/community_usage/sites.rb
+
+This is where you add new sites. 
+Sites have nil/true values for total (should the site be added to a total for the whole of the community?)
+and for community - is the site supposed to be on the main display page for your report...
+
+These can be usefully used as conditionals when looping through the sites.
+
+There is also the slice hash {:total => '1219464740', :nz => '1687910005'}
+
+All sites should have a :nz entry, which is their new zealand only analytics segment id.
+Most sites should have :total set to nil, unless they require a segment always. 
+Make sure it is nil, because a lot of stats methods use some_site.slice[:total]? to decide how to proceed.
+
+Individual stats methods are in /lib/community_usage/stats.rb. This is a mixin for the Site class. So the basic structure is:
+
+Site, with its own stat getting methods mixed in, is included in the @@sites hash, which is shared by Reports, which are passed to Export methods.
+
+
+
+
+
+
+
+
