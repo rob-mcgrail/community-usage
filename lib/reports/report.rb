@@ -11,14 +11,14 @@ class Report
     # Calls the Sites mixin - this imports the site details into the hash @sites
     #
     # Iterate through the sites like:
-    # @sites.each {|key, site_object| puts site_object.name}
+    # @@sites.each {|key, site_object| puts site_object.name}
     #
     # Site keys are their names:
-    # @sites[:portal].profile
-    # @sites[:promoting_healthy_lifestyles].visitors
+    # @@sites[:portal].profile
+    # @@sites[:promoting_healthy_lifestyles].visitors
     #
     # sites have tests for their place in TKI (see site.rb), so you can go:
-    #  @sites.each do |k, site|
+    #  @@sites.each do |k, site|
     #    next unless site.legacy?
     #    @legacy_visits += site.visits
     #  end
