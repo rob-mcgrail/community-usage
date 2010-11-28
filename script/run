@@ -4,9 +4,9 @@ Interface.start
 
 Export.make_directory
 
- #Export.to_csv(TotalsTable.new.full, 'totals_table')
- #Export.to_csv(TotalGraphs.new.pageviews, 'pageviewgraph')
- #Export.to_csv(TotalGraphs.new.visitors, 'visitorgraph')
+ Export.to_csv(TotalsTable.new.full, 'totals_table')
+ Export.to_csv(TotalGraphs.new.pageviews, 'pageviewgraph')
+ Export.to_csv(TotalGraphs.new.visitors, 'visitorgraph')
 
 Report.new_zealandify
    # Export.to_csv(TotalsTable.new.full, 'totals_table_nz')
