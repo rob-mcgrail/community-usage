@@ -29,7 +29,7 @@ module Stats
   #
 
   basic_stats.each do |arg|
-    method_name = (arg.to_s).to_sym
+    method_name = (arg)
     instance_arg = ('@'+arg.to_s).to_sym
     send :define_method, method_name do
       if self.instance_variable_get(instance_arg).nil? # Check if method has run already
@@ -52,7 +52,7 @@ module Stats
             report.set_segment_id(@slice[:nz])
           end
 
-          report.metrics arg.to_sym # API query
+          report.metrics arg # API query
 
         rescue Timeout::Error, Garb::DataRequest::ClientError
           puts "#{@name} suffered a request error for #{arg}. Trying again."
