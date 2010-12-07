@@ -78,6 +78,7 @@ module Sites
     ["7901135",     "Maori Education",                  true,              nil,                {:total => '940414221', :nz => '2145762637'}   ],
     ["26200548",    "Ma te Pouaka",                     true,              true,               {:total => nil, :nz => '2145762637'}           ],
     ["7901144",     "Media Studies",                    true,              true,               {:total => nil, :nz => '2145762637'}           ],
+    ["15413802",    "NZ Maths",                         true,              true,               {:total => nil, :nz => '2145762637'}           ],
     ["9226697",     "NZ Curriculum",                    true,              true,               {:total => nil, :nz => '2145762637'}           ],
     ["7901135",     "NCEA",                             true,              nil,                {:total => '1190271723', :nz => '453641217'}   ],
     ["7901135",     "Nga Toi Online",                   true,              nil,                {:total => '1272072292', :nz => '651106653'}   ],
