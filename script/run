@@ -9,16 +9,16 @@ Export.make_directory
  Export.to_csv(TotalGraphs.new.visitors, 'visitorgraph')
 
 Report.new_zealandify
-   # Export.to_csv(TotalsTable.new.full, 'totals_table_nz')
+   Export.to_csv(TotalsTable.new.full, 'totals_table_nz')
    Export.to_csv(TotalGraphs.new.pageviews, 'pageviewgraph_nz')
    Export.to_csv(TotalGraphs.new.visitors, 'visitorgraph_nz')
 Report.de_new_zealandify
 
 Report.set_to_previous_month
-  # Export.to_csv(TotalsTable.new.full, 'old_totals_table')
+  Export.to_csv(TotalsTable.new.full, 'old_totals_table')
 
   Report.new_zealandify
-    # Export.to_csv(TotalsTable.new.full, 'old_totals_table_nz')
+    Export.to_csv(TotalsTable.new.full, 'old_totals_table_nz')
   Report.de_new_zealandify
 Report.back_to_report_month
 
