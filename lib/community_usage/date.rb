@@ -6,9 +6,18 @@ class Date
   # and fighting with garb over requiring it...
   
   def days_in_month
-    i = self.month
-    i += 1
-    d = Date.new(self.year, i)
+    m = self.month
+    
+    if m == 12 # Handling December
+      m = 1
+      y = self.year
+      y += 1
+    else
+      y = self.year
+      m += 1
+    end
+    
+    d = Date.new(y, m)
     d = d - 1
     d.day
   end
