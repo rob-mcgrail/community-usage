@@ -16,10 +16,6 @@ class TotalGraphs < Report
       dates={:start => $start_date, :end => $end_date} #backing up dates
       i = 0
 
-      # active_support methods used here need datetimes
-      $start_date = $start_date.to_datetime
-      $end_date = $end_date.to_datetime
-
       # Get values using regular months
       v = 0
 
@@ -38,7 +34,7 @@ class TotalGraphs < Report
       # This looks horrible because ruby's Date class doesn't have real month methods
       #
       # The -15.days is a hack to enter the appropriate month,
-      # and then use active_supports beginning/end of month methods
+      # and then use beginning/end of month methods
       #
 
       (months-1).times do
