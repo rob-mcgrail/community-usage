@@ -10,7 +10,12 @@ class Site
 		@total = total
 		@slice = slice
 		@nz = nil
-	  @profile = Garb::Profile.first(@code)
+		begin
+	    @profile = Garb::Profile.first(@code)
+	  rescue Timeout::Error
+	    puts 'Timed out booting up site profile from GA, trying again.'
+	    @profile = Garb::Profile.first(@code)
+	  end
 	end
 
 	#
