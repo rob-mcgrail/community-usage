@@ -41,7 +41,7 @@ module Export
           header = header.unshift('name')
         end
 
-        csv << header; puts header
+        csv << header
 
         i = 0; x = 0
 
@@ -63,7 +63,7 @@ module Export
             temp << a[i]
             x += 1
           end
-          csv << temp; puts temp
+          csv << temp
           i += 1
         end
 
