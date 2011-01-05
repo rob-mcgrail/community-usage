@@ -52,11 +52,10 @@ class Report
     $dates_backup = {:start => $start_date, :end => $end_date} #backing up dates
 
     @@sites.values.each {|site| site.flush_all}
-
-    $start_date = $start_date.to_datetime
-    $end_date = $end_date.to_datetime
-    $start_date = ($start_date - 15.days).beginning_of_month
-    $end_date = ($end_date - 40.days).end_of_month
+    
+    $start_date = ($start_date - 15).beginning_of_month
+    $end_date = ($end_date - 40).end_of_month
+    puts $start_date.strftime; puts $end_date.strftime
   end
 
   def self.back_to_report_month
