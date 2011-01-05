@@ -38,8 +38,8 @@ class TotalGraphs < Report
       #
 
       (months-1).times do
-        $start_date = ($start_date - 15.days).beginning_of_month
-        $end_date = ($end_date - 40.days).end_of_month
+        $start_date = ($start_date - 15).beginning_of_month
+        $end_date = ($end_date - 40).end_of_month
 
         v = 0
         # The flush method resets the instance variable back to nil, so the stats method will run again
