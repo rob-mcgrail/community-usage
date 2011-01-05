@@ -58,7 +58,7 @@ module Sites
     ["14920893",    "ESOL Online",                      true,              true,               {:total => nil, :nz => '2145762637'}           ],
     ["35824089",    "Gifted and Talented",              true,              true,               {:total => nil, :nz => '2145762637'}           ],
     ["7901135",     "Health and PE",                    true,              nil,                {:total => '1192211562', :nz => '168815002'}   ],
-    ["36229745",    "Health Promoting Schools",         true,              true,               {:total => nil, :nz => '2145762637'}   		    ],
+    ["36229745",    "Health Promoting Schools",         true,              true,               {:total => nil, :nz => '2145762637'}           ],
     ["14962720",    "He Kohinga Rauemi a Ipu Rangi",    true,              true,               {:total => nil, :nz => '2145762637'}           ],
     ["22192627",    "Hoatu Homai",                      true,              true,               {:total => nil, :nz => '2145762637'}           ],
     ["22900702",    "Home-School Partnerships",         true,              true,               {:total => nil, :nz => '2145762637'}           ],
