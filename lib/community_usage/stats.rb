@@ -54,9 +54,9 @@ module Stats
 
           report.metrics arg # API query
 
-        rescue Timeout::Error, Garb::DataRequest::ClientError
+        rescue Garb::DataRequest::ClientError, Timeout::Error
           puts "#{@name} suffered a request error for #{arg}. Trying again."
-          retry
+          retry       
         end
 
         #
@@ -67,14 +67,18 @@ module Stats
         # These are converted to floats as to_f can handle strings of sci notation, which GA
         # uses for very large values
         #
-
-        if report.results.length == 1
-          self.instance_variable_set(instance_arg, report.results.first.send(arg).to_f) # Set instance variable
-        elsif report.results.length == 0
-          puts "Stats##{arg.to_s} returned nothing. You may be seeking data outside of #{self.name}'s valid range..."
-          self.instance_variable_set(instance_arg, 0.0)
-        else
-          raise "Stats##{arg.to_s} returned more than one value. This means something is wrong."
+        begin
+          if report.results.length == 1
+            self.instance_variable_set(instance_arg, report.results.first.send(arg).to_f) # Set instance variable
+          elsif report.results.length == 0
+            puts "Stats##{arg.to_s} returned nothing. You may be seeking data outside of #{self.name}'s valid range..."
+            self.instance_variable_set(instance_arg, 0.0)
+          else
+            raise "Stats##{arg.to_s} returned more than one value. This means something is wrong."
+          end
+        rescue Garb::DataRequest::ClientError, Timeout::Error
+          puts "#{@name} suffered a request error for #{arg}. Trying again."
+          retry       
         end
       else
         #getter - returns instance variable of the same name as method
@@ -115,22 +119,27 @@ module Stats
         puts "#{@name} suffered a request error for #{arg}. Trying again."
         retry
       end
+      
+      begin
+        if report.results.length == 2
+          report.results.each do |result|
 
-      if report.results.length == 2
-        report.results.each do |result|
+            # Creates both instance variables -
+            # @new_visitors, @returning_visitors
+            # based on the dimension names returned by GA
 
-          # Creates both instance variables -
-          # @new_visitors, @returning_visitors
-          # based on the dimension names returned by GA
-
-          var_name = ('@'+result.visitor_type.downcase.tr(" ", "_")+'s')
-          self.instance_variable_set(var_name.to_sym, result.visits.to_f)
+            var_name = ('@'+result.visitor_type.downcase.tr(" ", "_")+'s')
+            self.instance_variable_set(var_name.to_sym, result.visits.to_f)
+          end
+          @new_visitors
+        elsif report.results.length == 0
+          puts "Stats#new_visitors returned nothing. You may be seeking data outside of #{self.name}'s valid range..."
+        else
+          puts "Stats#new_visitors returned more than two values. This means something is wrong."
         end
-        @new_visitors
-      elsif report.results.length == 0
-        puts "Stats#new_visitors returned nothing. You may be seeking data outside of #{self.name}'s valid range..."
-      else
-        puts "Stats#new_visitors returned more than two values. This means something is wrong."
+      rescue Timeout::Error, Garb::DataRequest::ClientError
+        puts "#{@name} suffered a request error for #{arg}. Trying again."
+        retry
       end
     else
       @new_visitors
