@@ -55,7 +55,6 @@ class Report
     
     $start_date = ($start_date - 15).beginning_of_month
     $end_date = ($end_date - 40).end_of_month
-    puts $start_date.strftime; puts $end_date.strftime
   end
 
   def self.back_to_report_month
