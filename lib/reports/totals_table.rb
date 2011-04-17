@@ -7,29 +7,29 @@ class TotalsTable < Report
     data={}
     metrics.each {|m| data[m]=[]} # Create hash keys
 
-	sites = @@sites.values
+  	sites = @@sites.values
 
-	sites.sort! {|a,b| a.name <=> b.name }
+  	sites.sort! {|a,b| a.name <=> b.name }
 
-	sites.each do |site|
-      if site.is_for_total?
+  	sites.each do |site|
+        if site.is_for_total?
 
-        data[:name] << site.name
-        data[:visitors] << site.visitors
-        data[:visits] << site.visits
-        data[:pageviews] << site.pageviews
-        data[:new_visitors] << site.new_visitors
-        data[:returning_visitors] << site.returning_visitors
-        data[:bouncerate] << site.bouncerate
-        data[:average_time] << site.average_time
-        data[:pages_per_visit] << site.pages_per_visit
+          data[:name] << site.name
+          data[:visitors] << site.visitors
+          data[:visits] << site.visits
+          data[:pageviews] << site.pageviews
+          data[:new_visitors] << site.new_visitors
+          data[:returning_visitors] << site.returning_visitors
+          data[:bouncerate] << site.bouncerate
+          data[:average_time] << site.average_time
+          data[:pages_per_visit] << site.pages_per_visit
 
+        end
       end
-    end
 
-    self.check(data)
-    data
-  end
+      self.check(data)
+      data
+    end
 
 end
 
