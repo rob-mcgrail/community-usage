@@ -26,30 +26,30 @@ of all the individual sites, and can be used to access their variables in report
 
 Iterate through the sites, from within a report, like:
 
-<code>@@sites.each {|key, site_object| puts site_object.name}
+<code>@@sites.each {|key, site_object| puts site_object.name}</code>
 
 Site keys are their names:
 
-<code>@@sites[:portal].profile
-@@sites[:promoting_healthy_lifestyles].visitors</code>
+<pre>@@sites[:portal].profile
+@@sites[:promoting_healthy_lifestyles].visitors</pre>
 
 sites have tests for their place in TKI (see site.rb), so you can go:
 
-<code>@@sites.each do |k, site|
+<pre>@@sites.each do |k, site|
   next unless site.total?
   @legacy_visits += site.visits
-end</code>
+end</pre>
 
 The Report classes also have the following helpers:
 
-<code>Report.new_zealandify
-Report.de_new_zealandify</code>
+<pre>Report.new_zealandify
+Report.de_new_zealandify</pre>
 
 This sets and unsets a "use new zealand" variable for all the sites. 
 While this is set sites will grab stats with their new zealand only segments (entered in sites.rb)
 
-<code>Report.set_to_previous_month
-Report.back_to_report_month</code>
+<pre>Report.set_to_previous_month
+Report.back_to_report_month</pre>
 
 Change the global date variables, and resets them
 
