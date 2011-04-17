@@ -29,11 +29,13 @@ Iterate through the sites, from within a report, like:
 <code>@@sites.each {|key, site_object| puts site_object.name}
 
 Site keys are their names:
-@@sites[:portal].profile
-@@sites[:promoting_healthy_lifestyles].visitors
+
+<code>@@sites[:portal].profile
+@@sites[:promoting_healthy_lifestyles].visitors</code>
 
 sites have tests for their place in TKI (see site.rb), so you can go:
-@@sites.each do |k, site|
+
+<code>@@sites.each do |k, site|
   next unless site.total?
   @legacy_visits += site.visits
 end</code>
@@ -63,7 +65,9 @@ These can be usefully used as conditionals when looping through the sites.
 There is also the slice hash @{:total => '1219464740', :nz => '1687910005'}@
 
 All sites should have a :nz entry, which is their new zealand only analytics segment id.
+
 Most sites should have :total set to nil, unless they require a segment always. 
+
 Make sure it is nil, because a lot of stats methods use @some_site.slice[:total]?@ to decide how to proceed.
 
 Individual stats methods are in @/lib/community_usage/stats.rb@. This is a mixin for the Site class. So the basic structure is:
