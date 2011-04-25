@@ -23,7 +23,6 @@ class TotalsTable < Report
           data[:bouncerate] << site.bouncerate
           data[:average_time] << site.average_time
           data[:pages_per_visit] << site.pages_per_visit
-
         end
       end
 

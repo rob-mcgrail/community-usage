@@ -17,4 +17,5 @@ require 'reports/report'
 require 'reports/communities_table'
 require 'reports/total_graphs'
 require 'reports/totals_table'
+require 'reports/annual_curiosities'
 

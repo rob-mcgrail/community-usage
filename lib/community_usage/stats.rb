@@ -159,6 +159,7 @@ module Stats
       @new_visitors
     end
   end
+  
 
   def returning_visitors
 

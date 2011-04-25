@@ -63,7 +63,7 @@ class Report
       $start_date = $dates_backup[:start]; $end_date = $dates_backup[:end] #reset dates
     end
   end
-
+  
   def check(data)
     # A quick check to make sure the data hash isn't broken
 
