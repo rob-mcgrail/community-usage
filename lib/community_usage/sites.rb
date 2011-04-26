@@ -101,7 +101,7 @@ module Sites
     ["23522664",    "Taihape Area School",              nil,               true,               {:total => nil, :nz => NZSEGMENT}           ],
     ["16617864",    "Te Reo Maori",                     true,              true,               {:total => nil, :nz => NZSEGMENT}           ],
     ["19752543",    "Te tere Auraki",                   true,              true,               {:total => nil, :nz => NZSEGMENT}           ],
-    ["16845949",    "Tu Rangatira",                     true,              nil,                {:total => '1961915044', :nz => '227756734'}   ]
+    ["16845949",    "Tu Rangatira",                     true,              nil,                {:total => '1961915044', :nz => '227756734'}   ],
 
     ]
 
