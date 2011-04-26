@@ -14,6 +14,20 @@ module Export
       @path = File.expand_path(File.dirname(__FILE__) + "/../../output/#{dir}")
       FileUtils.mkdir_p @path
     end
+    
+    
+    def self.to_list(data, file_name_stub)
+      file_name = file_name_stub + '-' + $start_date.strftime("%h-%y").to_s.downcase + '.csv'
+      file = File.new(@path+"/#{file_name}", 'w+')
+      
+      data.each do |item|
+        file << "#{item}\n"
+      end
+      
+      file.close
+    end
+    
+    
 
     def self.to_csv(data, file_name_stub)
 
@@ -70,7 +84,7 @@ module Export
       end
 
       file.close # This seems to be necessary in order to use the files before the whole script is finished,
-				 # also memory, presumably...
+		  # also memory, presumably...
     end
 end
 
