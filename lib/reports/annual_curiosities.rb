@@ -1,10 +1,8 @@
 class AnnualCuriosities < Report
   
-  [:visits, :visitors, :pageviews, :new_visits, :bounces, :time_on_site, :entrances, :exits, :total_events].each do |arg|
-    methods = {}
-    method_name = ('highest_'+arg.to_s).to_sym
-    methods[:highest] = method_name
-    send :define_method, method_name do |limit|
+  [:visits, :visitors, :pageviews, :new_visits, :bounces, :time_on_site, :entrances, :returning_visits, :exits, :total_events].each do |arg|
+    
+    send :define_method, (arg.to_s+'_generic').to_sym do |limit|
       i = limit || 5
       things=[]
       @@sites.each do |k,v|
@@ -12,60 +10,101 @@ class AnnualCuriosities < Report
           things << [v.name, v.send(arg)]
         end
       end
-
-      things.sort! {|a,b| b[1] <=> a[1]}
-
+      
+      yield things if block_given?
+      
       data = []
-      things[0..(i-1)].each do |thing|
+      
+      things[0..(limit-1)].each do |thing|
         data << "#{thing[0]}: #{thing[1]}"
       end
       
       data
     end
     
-    method_name = ('lowest_'+arg.to_s).to_sym
-    methods[:lowest] = method_name
-    send :define_method, method_name do |limit|
-      i = limit || 5
-      things=[]
-      @@sites.each do |k,v|
-        if v.is_for_total?
-          things << [v.name, v.send(arg)]
-        end
+    send :define_method, ('lowest_'+arg.to_s).to_sym do |limit|
+      data = self.send(arg.to_s+'_generic').to_sym do |a|
+        a.sort! {|a,b| a[1] <=> b[1]}
       end
-
-      things.sort! {|a,b| a[1] <=> b[1]}
       
-      data = []
-      things[0..(i-1)].each do |thing|
+      data[0..(limit-1)].each do |thing|
         data << "#{thing[0]}: #{thing[1]}"
       end
       
-      data    
+      data
+    end
+    
+    send :define_method, ('highest_'+arg.to_s).to_sym do |limit|
+      data = self.send(arg.to_s+'_generic').to_sym do |a|
+        a.sort! {|a,b| b[1] <=> a[1]}
+      end
+      
+      data[0..(limit-1)].each do |thing|
+        data << "#{thing[0]}: #{thing[1]}"
+      end
+      
+      data
     end
     
     send :define_method, arg do |limit|
       data = []
       data << "Highest for #{arg}"
-      data = data + self.send(methods[:highest])
+      data = data + self.send(('highest_'+arg.to_s).to_sym, limit)
       data << "Lowest for #{arg}"
-      data = data + self.send(methods[:lowest])
+      data = data + self.send(('lowest_'+arg.to_s).to_sym, limit)
       data
     end
     
   end
   
-  def growing(limit=5)
-    data = self.change(limit) do |a|
-      a.sort! {|a,b| b[:change] <=> a[:change]} #make two methods with this in a block using yield?
+  
+  def new_returning(limit=5)
+    visits = visits_generic(limit)
+    returnings = returning_visits_generic(limit)
+    ratios = []
+    i = 0
+    returnings.each do |r|
+      ratios << [r[0], (r[1]/visits[i][1])*100]
+      i+=1
+    end
+    
+    yield ratios
+    
+    data = []
+    ratios[0..(i-1)].each do |ratio|
+      data << "#{ratio[0]}: #{ratio[1]}%"
+    end
+    data
+  end
+  
+  def new_returning_highest(limit=5)
+    data = self.new_returning(limit) do |a|
+      a.sort! {|a,b| b[1] <=> a[1]}
     end
     
     data
   end
   
+  def new_returning_lowest(limit=5)
+    data = self.new_returning(limit) do |a|
+      a.sort! {|a,b| a[1] <=> b[1]}
+    end
+    
+    data
+  end
+  
+  
+  def growing(limit=5)
+    data = self.change(limit) do |a|
+      a.sort! {|a,b| b[:change] <=> a[:change]}
+    end
+  
+    data
+  end
+  
   def shrinking(limit=5)
     data = self.change(limit) do |a|
-      a.sort! {|a,b| a[:change] <=> b[:change]} #make two methods with this in a block using yield?
+      a.sort! {|a,b| a[:change] <=> b[:change]}
     end
     
     data
@@ -117,7 +156,7 @@ class AnnualCuriosities < Report
     
     $start_date = $dates_backup[:start]; $end_date = $dates_backup[:end] #reset dates
     
-    yield rates
+    yield rates if block_given?
     
     data = []
     rates[0..(i-1)].each do |rate|
