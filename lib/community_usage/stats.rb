@@ -68,7 +68,7 @@ module Stats
 
           report.metrics arg # API query
 
-        rescue Garb::DataRequest::ClientError, Timeout::Error
+        rescue Garb::DataRequest::ClientError, Timeout::Error #do you really want to rescue DataRequest errors?
           puts "#{@name} suffered a request error for #{arg}. Trying again."
           retry       
         end
@@ -215,14 +215,13 @@ module Stats
     # Argument is variable name as a string, without the @
     #
 
-    variable = ('@'+var).to_sym
+    variable = ('@'+var.to_s).to_sym
     self.instance_variable_set(variable, nil)
   end
 
   def flush_all #TODO make basic stats not just dumped in - how to acces variable outside of method
     basic_stats = [:visits, :visitors, :pageviews, :pages_per_visit, :new_visits, :bounces, :time_on_site, :entrances, :exits, :total_events, :average_time, :bouncerate, :returning_visitors, :new_visitors, :returning_visits]
     basic_stats.each do |var|
-
       variable = ('@'+var.to_s).to_sym
       self.instance_variable_set(variable, nil)
     end
