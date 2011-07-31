@@ -1,8 +1,8 @@
 class AnnualCuriosities < Report
   
-  [:visits, :visitors, :pageviews, :new_visits, :bounces, :time_on_site, :entrances, :returning_visits, :exits, :total_events].each do |arg|
+  [:visits, :visitors, :pageviews, :new_returning, :new_visits, :bounces, :bouncerate, :time_on_site, :entrances, :returning_visits, :exits, :total_events].each do |arg|
     
-    send :define_method, (arg.to_s+'_generic').to_sym do |limit|
+    send :define_method, (arg.to_s+'_generic').to_sym do |limit, &b|
       i = limit || 5
       things=[]
       @@sites.each do |k,v|
@@ -11,89 +11,48 @@ class AnnualCuriosities < Report
         end
       end
       
-      yield things if block_given?
+      b.call(things)
       
-      data = []
+      container = []
       
       things[0..(limit-1)].each do |thing|
-        data << "#{thing[0]}: #{thing[1]}"
+        container << "#{thing[0]}: #{thing[1]}"
       end
       
-      data
+      container
     end
     
+    # My having to namespace all the variables below horribly (low_a etc) is why ruby is
+    # worse than 500 Hitlers.
+    
     send :define_method, ('lowest_'+arg.to_s).to_sym do |limit|
-      data = self.send(arg.to_s+'_generic').to_sym do |a|
-        a.sort! {|a,b| a[1] <=> b[1]}
+      low_data = self.send((arg.to_s+'_generic').to_sym, limit) do |low_a|
+        low_a.sort! {|a,b| a[1] <=> b[1]}
       end
-      
-      data[0..(limit-1)].each do |thing|
-        data << "#{thing[0]}: #{thing[1]}"
-      end
-      
-      data
+
+      low_data
     end
     
     send :define_method, ('highest_'+arg.to_s).to_sym do |limit|
-      data = self.send(arg.to_s+'_generic').to_sym do |a|
-        a.sort! {|a,b| b[1] <=> a[1]}
+      high_data = self.send((arg.to_s+'_generic').to_sym, limit) do |high_a|
+        high_a.sort! {|a,b| b[1] <=> a[1]}
       end
       
-      data[0..(limit-1)].each do |thing|
-        data << "#{thing[0]}: #{thing[1]}"
-      end
-      
-      data
+      high_data
     end
     
     send :define_method, arg do |limit|
       data = []
-      data << "Highest for #{arg}"
+      data << "\nHighest for #{arg}\n"
       data = data + self.send(('highest_'+arg.to_s).to_sym, limit)
-      data << "Lowest for #{arg}"
+      data << "\nLowest for #{arg}\n"
       data = data + self.send(('lowest_'+arg.to_s).to_sym, limit)
       data
     end
     
   end
   
-  
-  def new_returning(limit=5)
-    visits = visits_generic(limit)
-    returnings = returning_visits_generic(limit)
-    ratios = []
-    i = 0
-    returnings.each do |r|
-      ratios << [r[0], (r[1]/visits[i][1])*100]
-      i+=1
-    end
     
-    yield ratios
-    
-    data = []
-    ratios[0..(i-1)].each do |ratio|
-      data << "#{ratio[0]}: #{ratio[1]}%"
-    end
-    data
-  end
-  
-  def new_returning_highest(limit=5)
-    data = self.new_returning(limit) do |a|
-      a.sort! {|a,b| b[1] <=> a[1]}
-    end
-    
-    data
-  end
-  
-  def new_returning_lowest(limit=5)
-    data = self.new_returning(limit) do |a|
-      a.sort! {|a,b| a[1] <=> b[1]}
-    end
-    
-    data
-  end
-  
-  
   def growing(limit=5)
     data = self.change(limit) do |a|
       a.sort! {|a,b| b[:change] <=> a[:change]}

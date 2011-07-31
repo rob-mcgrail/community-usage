@@ -26,7 +26,7 @@ module Stats
   # See the classes in /reports/ for examples
   #
 
-  basic_stats = [:visits, :visitors, :pageviews, :new_visits, :bounces, :time_on_site, :entrances, :exits, :total_events]
+  basic_stats = [:visits, :visitors, :pageviews, :new_visits, :bounces, :time_on_site, :entrances, :exits, :total_events, :returning_visits]
 
   #
   # Array above is used to create methods of the same name
@@ -90,7 +90,7 @@ module Stats
           else
             raise "Stats##{arg.to_s} returned more than one value. This means something is wrong."
           end
-        rescue Garb::DataRequest::ClientError, Timeout::Error
+        rescue Timeout::Error #Garb::DataRequest::ClientError 
           puts "#{@name} suffered a request error for #{arg}. Trying again."
           retry       
         end
@@ -129,7 +129,7 @@ module Stats
         report.metrics :visits
         report.dimensions :visitorType
 
-      rescue Timeout::Error, Garb::DataRequest::ClientError
+      rescue Timeout::Error #Garb::DataRequest::ClientError 
         puts "#{@name} suffered a request error for #{arg}. Trying again."
         retry
       end
@@ -151,7 +151,7 @@ module Stats
         else
           puts "Stats#new_visitors returned more than two values. This means something is wrong."
         end
-      rescue Timeout::Error, Garb::DataRequest::ClientError
+      rescue Timeout::Error #Garb::DataRequest::ClientError 
         puts "#{@name} suffered a request error for #{arg}. Trying again."
         retry
       end
@@ -172,6 +172,17 @@ module Stats
       @returning_visitors
     end
   end
+  
+  def new_returning
+    # This is a derivative metric
+
+    if @new_returning.nil?
+      @new_returning = self.returning_visits/self.visits
+    else
+      @new_returning
+    end
+  end
+
 
   def bouncerate
     # This is a derivative metric

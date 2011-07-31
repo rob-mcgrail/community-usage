@@ -5,14 +5,13 @@ Interface.start
 Export.make_directory 'annual'
 
 
-Export.to_list(AnnualCuriosities.new.growing(15), 'growing-communities')
-Export.to_list(AnnualCuriosities.new.shrinking(15), 'shrinking-communities')
+Export.to_list(AnnualCuriosities.new.growing(20), 'growing-communities')
+Export.to_list(AnnualCuriosities.new.shrinking(20), 'shrinking-communities')
 
-Export.to_list(AnnualCuriosities.new.new_returning_highest(15), 'new_returning_highest')
-Export.to_list(AnnualCuriosities.new.new_returning_lowest(15), 'new_returning_lowest')
-
+ 
 Export.to_list(AnnualCuriosities.new.visits(15), 'visits')
 Export.to_list(AnnualCuriosities.new.visitors(15), 'visitors')
 Export.to_list(AnnualCuriosities.new.pageviews(15), 'pageviews')
 Export.to_list(AnnualCuriosities.new.time_on_site(15), 'time_on_site')
 Export.to_list(AnnualCuriosities.new.bounces(15), 'bounces')
+# Export.to_list(AnnualCuriosities.new.new_returning(15), 'new_returning')
