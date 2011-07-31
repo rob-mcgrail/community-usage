@@ -99,6 +99,7 @@ module Sites
     ["7901135",     "Student Support",                  true,              nil,                {:total => '1599237438', :nz => '1440624382'}  ],
     ["9371496",     "Success for Boys",                 true,              true,               {:total => nil, :nz => NZSEGMENT}           ],
     ["23522664",    "Taihape Area School",              nil,               true,               {:total => nil, :nz => NZSEGMENT}           ],
+    ["47631661",    "Tax Citizenship",		              nil,               true,               {:total => nil, :nz => NZSEGMENT}           ],
     ["16617864",    "Te Reo Maori",                     true,              true,               {:total => nil, :nz => NZSEGMENT}           ],
     ["19752543",    "Te tere Auraki",                   true,              true,               {:total => nil, :nz => NZSEGMENT}           ],
     ["16845949",    "Tu Rangatira",                     true,              nil,                {:total => '1961915044', :nz => '227756734'}   ],
