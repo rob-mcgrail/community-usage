@@ -80,6 +80,7 @@ module Sites
     ["7901135",     "Maori Education",                  true,              nil,                {:total => '940414221', :nz => NZSEGMENT}   ],
     ["26200548",    "Ma te Pouaka",                     true,              true,               {:total => nil, :nz => NZSEGMENT}           ],
     ["7901144",     "Media Studies",                    true,              true,               {:total => nil, :nz => NZSEGMENT}           ],
+    ["49259338",    "NAPP",                         		true,              true,               {:total => nil, :nz => NZSEGMENT}           ],
     ["15413802",    "NZ Maths",                         true,              true,               {:total => nil, :nz => NZSEGMENT}           ],
     ["9226697",     "NZ Curriculum",                    true,              true,               {:total => nil, :nz => NZSEGMENT}           ],
     ["40152315",    "NZ Sign Language",                 true,              true,               {:total => nil, :nz => NZSEGMENT}           ],
