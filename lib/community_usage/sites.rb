@@ -42,7 +42,7 @@ module Sites
     # GA profile    Name                                community?         total?             slice
     ["7901135",     "Legacy",                           true,              true,               {:total => '1219464740', :nz => '1687910005'}  ],
     ["35630502",    "Portal",                           true,              true,               {:total => nil, :nz => NZSEGMENT}           ],
-    ["44774285",    "Alternative Education",            true,              true,               {:total => nil, :nz => NZSEGMENT}    ],
+    ["44774285",    "Alternative Education",            true,              true,               {:total => nil, :nz => NZSEGMENT}    			 ],
     ["7901135",     "Arts Community",                   true,              nil,                {:total => '1434655333', :nz => '538654675'}   ],
     ["34260881",    "Arts Online",                      true,              true,               {:total => nil, :nz => NZSEGMENT}           ],
     ["7922426",     "Asia Knowledge",                   true,              true,               {:total => nil, :nz => NZSEGMENT}           ],
@@ -54,6 +54,7 @@ module Sites
     ["12471470",    "Education for Enterprise",         true,              true,               {:total => nil, :nz => NZSEGMENT}           ],
     ["9029662",     "Education for Sustainability",     true,              true,               {:total => nil, :nz => NZSEGMENT}           ],
     ["16845949",    "Educational Leaders",              true,              true,               {:total => nil, :nz => NZSEGMENT}           ],
+    ["51155313",    "Enabling e-Learning",            	true,              true,               {:total => nil, :nz => NZSEGMENT}           ],
     ["24247105",    "e-Learning as Inquiry",            nil,               true,               {:total => nil, :nz => NZSEGMENT}           ],
     ["14920696",    "English Online",                   true,              true,               {:total => nil, :nz => NZSEGMENT}           ],
     ["9371510",     "EOTC/LEOTC",                       true,              true,               {:total => nil, :nz => NZSEGMENT}           ],
@@ -62,6 +63,7 @@ module Sites
     ["7901135",     "Health and PE",                    true,              nil,                {:total => '1192211562', :nz => '168815002'}   ],
     ["36229745",    "Health Promoting Schools",         true,              true,               {:total => nil, :nz => NZSEGMENT}           ],
     ["14962720",    "He Kohinga Rauemi a Ipu Rangi",    true,              true,               {:total => nil, :nz => NZSEGMENT}           ],
+    ["45612578",    "He reo tupu",                      true,              true,               {:total => nil, :nz => NZSEGMENT}           ],
     ["22192627",    "Hoatu Homai",                      true,              true,               {:total => nil, :nz => NZSEGMENT}           ],
     ["22900702",    "Home-School Partnerships",         true,              true,               {:total => nil, :nz => NZSEGMENT}           ],
     ["7901135",     "INNZ",                             true,              nil,                {:total => '1192211562', :nz => '168815002'}   ],
@@ -94,6 +96,7 @@ module Sites
     ["14920959",    "Secondary Literacy Project",       true,              nil,                {:total => '1034945190', :nz => '1700825154'}  ],
     ["40380269",    "Secondary",                        true,              true,               {:total => nil, :nz => NZSEGMENT}           ],
     ["9760559",     "Senior Secondary Curriculum Guidelines", true,        true,               {:total => nil, :nz => NZSEGMENT}           ],
+    ["50765190",    "SE Online",                        true,              true,               {:total => nil, :nz => NZSEGMENT}  				 ],
     ["11978273",    "Software for Learning",            true,              true,               {:total => nil, :nz => NZSEGMENT}           ],
     ["9555576",     "Sounds and Words",                 true,              true,               {:total => nil, :nz => NZSEGMENT}           ],
     ["7992968",     "Social Sciences Online",           true,              true,               {:total => nil, :nz => NZSEGMENT}           ],
@@ -104,7 +107,7 @@ module Sites
     ["16617864",    "Te Reo Maori",                     true,              true,               {:total => nil, :nz => NZSEGMENT}           ],
     ["19752543",    "Te tere Auraki",                   true,              true,               {:total => nil, :nz => NZSEGMENT}           ],
     ["16845949",    "Tu Rangatira",                     true,              nil,                {:total => '1961915044', :nz => '227756734'}   ],
-
+    ["53707939",    "Well being",                       true,              nil,                {:total => nil, :nz => NZSEGMENT}           ],
     ]
 
     if !self.sites?
