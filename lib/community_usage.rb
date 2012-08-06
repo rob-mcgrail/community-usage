@@ -13,6 +13,9 @@ require 'community_usage/site'
 require 'community_usage/sites'
 require 'community_usage/export'
 
+require 'community_usage/monkeypatch'
+
+
 require 'reports/report'
 require 'reports/communities_table'
 require 'reports/total_graphs'

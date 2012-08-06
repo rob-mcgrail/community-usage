@@ -89,6 +89,7 @@ module Sites
     ["7901135",     "NCEA",                             true,              nil,                {:total => '1190271723', :nz => '453641217'}   ],
     ["7901135",     "Nga Toi Online",                   true,              nil,                {:total => '1272072292', :nz => '651106653'}   ],
     ["36101231",    "Pasifika",                         true,              true,               {:total => nil, :nz => NZSEGMENT}           ],
+    ["59217096",    "Positive Behaviour for Learning",  true,              true,               {:total => nil, :nz => NZSEGMENT}           ],
     ["8272137",     "Promoting Healthy Lifestyles",     true,              true,               {:total => nil, :nz => NZSEGMENT}           ],
     ["23725351",    "Putaiao",                          true,              true,               {:total => nil, :nz => NZSEGMENT}           ],
     ["10354806",    "RTLB",                             true,              true,               {:total => nil, :nz => NZSEGMENT}           ],
@@ -122,4 +123,3 @@ module Sites
   end
 
 end
-
