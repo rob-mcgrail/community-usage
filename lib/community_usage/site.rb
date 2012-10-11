@@ -11,10 +11,10 @@ class Site
 		@slice = slice
 		@nz = nil
 		begin
-	    @profile = Garb::Profile.first(@code)
+	    @profile = Garb::Management::Profile.all.detect {|p| p.id == @code}
 	  rescue Timeout::Error
 	    puts 'Timed out booting up site profile from GA, trying again.'
-	    @profile = Garb::Profile.first(@code)
+      @profile = Garb::Management::Profile.all.detect {|p| p.id == @code}
 	  end
 	end
 
