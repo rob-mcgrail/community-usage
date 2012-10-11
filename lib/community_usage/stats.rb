@@ -70,7 +70,7 @@ module Stats
 
         rescue Garb::DataRequest::ClientError, Timeout::Error #do you really want to rescue DataRequest errors?
           puts "#{@name} suffered a request error for #{arg}. Trying again."
-          retry       
+          retry
         end
 
         #
@@ -82,17 +82,17 @@ module Stats
         # uses for very large values
         #
         begin
-          if report.results.length == 1
+          if report.results.to_a.length == 1
             self.instance_variable_set(instance_arg, report.results.first.send(arg).to_f) # Set instance variable
-          elsif report.results.length == 0
+          elsif report.results.to_a.length == 0
             puts "Stats##{arg.to_s} returned nothing. You may be seeking data outside of #{self.name}'s valid range..."
             self.instance_variable_set(instance_arg, 0.0)
           else
             raise "Stats##{arg.to_s} returned more than one value. This means something is wrong."
           end
-        rescue Timeout::Error #Garb::DataRequest::ClientError 
+        rescue Timeout::Error #Garb::DataRequest::ClientError
           puts "#{@name} suffered a request error for #{arg}. Trying again."
-          retry       
+          retry
         end
       else
         #getter - returns instance variable of the same name as method
@@ -129,13 +129,13 @@ module Stats
         report.metrics :visits
         report.dimensions :visitorType
 
-      rescue Timeout::Error #Garb::DataRequest::ClientError 
+      rescue Timeout::Error #Garb::DataRequest::ClientError
         puts "#{@name} suffered a request error for #{arg}. Trying again."
         retry
       end
-      
+
       begin
-        if report.results.length == 2
+        if report.results.to_a.length == 2
           report.results.each do |result|
 
             # Creates both instance variables -
@@ -146,12 +146,12 @@ module Stats
             self.instance_variable_set(var_name.to_sym, result.visits.to_f)
           end
           @new_visitors
-        elsif report.results.length == 0
+        elsif report.results.to_a.length == 0
           puts "Stats#new_visitors returned nothing. You may be seeking data outside of #{self.name}'s valid range..."
         else
           puts "Stats#new_visitors returned more than two values. This means something is wrong."
         end
-      rescue Timeout::Error #Garb::DataRequest::ClientError 
+      rescue Timeout::Error #Garb::DataRequest::ClientError
         puts "#{@name} suffered a request error for #{arg}. Trying again."
         retry
       end
@@ -159,7 +159,7 @@ module Stats
       @new_visitors
     end
   end
-  
+
 
   def returning_visitors
 
@@ -172,7 +172,7 @@ module Stats
       @returning_visitors
     end
   end
-  
+
   def new_returning
     # This is a derivative metric
 
